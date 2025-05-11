@@ -1,0 +1,63 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="canonical" href="self.html" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    <script async custom-element="amp-story"
+        src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+        
+    <script async custom-element="amp-img"
+        src="https://cdn.ampproject.org/v0/amp-img-0.1.js"></script>
+
+    <style amp-custom>
+      amp-story {
+        font-family: 'Arial', sans-serif;
+        color: white;
+      }
+
+      amp-story-page {
+        background-color: #000;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin: 0;
+        padding: 0.5em;
+        text-shadow: 1px 1px 4px #000;
+      }
+
+      p {
+        font-size: 1.2em;
+        margin: 0.5em;
+        padding: 0.5em;
+        text-shadow: 1px 1px 3px #000;
+      }
+    </style>
+  </head>
+  <body>
+    <amp-story standalone
+               title="{{title}}"
+               publisher="Your App"
+               publisher-logo-src="https://example.com/logo.png"
+               poster-portrait-src="https://example.com/poster.jpg">
+
+      {{#slides}}
+  <amp-story-page id="page-{{index}}">
+    <amp-story-grid-layer template="fill">
+      <amp-img src="{{{background}}}" width="720" height="1280" layout="fill"></amp-img>
+    </amp-story-grid-layer>
+    <amp-story-grid-layer template="vertical">
+      <h1>{{heading}}</h1>
+      <p>{{content}}</p>
+    </amp-story-grid-layer>
+  </amp-story-page>
+{{/slides}}
+
+    </amp-story>
+  </body>
+</html>
