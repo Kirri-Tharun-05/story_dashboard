@@ -136,7 +136,7 @@ const StorySlideChat = () => {
           <iframe
             title="AMP Story Preview"
             srcDoc={preview}
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts allow-same-origin allow-top-navigation-by-user-activation"
             width="300"
             height="550"
             style={{
