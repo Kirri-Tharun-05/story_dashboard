@@ -14,6 +14,10 @@ app.use(express.json());
 app.use('/api/stories', storiesRoutes);
 app.use('/api/generateStory',generateStoriesRoute);
 
+
+// updated if not work then remove this .
+app.use('/stories', express.static(path.join(__dirname, 'stories')));
+
 app.get('/', (req, res) => {
   res.send("Running")
 })

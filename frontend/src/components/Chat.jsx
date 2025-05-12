@@ -115,6 +115,7 @@ const StorySlideChat = () => {
             console.log(keyword);
             try {
                 const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
+                console.log(response);
                 const data = response.data;
 
                 // Check if the response is correct
@@ -152,6 +153,7 @@ const StorySlideChat = () => {
                     <iframe
                         title="AMP Story Preview"
                         srcDoc={preview}
+                        // src={`http://localhost:5000/api/generateStory/${keyword}`}
                         sandbox="allow-scripts allow-same-origin"
                         width="360"
                         height="640"
