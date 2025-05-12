@@ -11,7 +11,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/dashboard' element={<Dashboard1 />} />
+          <Route path='/' element={<Dashboard1 />} />
+          {/* <Route path='/dashboard' element={<Dashboard1 />} /> */}
           <Route path='/generateStory' element={<Chat />} />
         </Routes>
       </BrowserRouter>
