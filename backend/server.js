@@ -4,12 +4,15 @@ const dotenv = require('dotenv');
 
 dotenv.config(); // Load environment variables
 const storiesRoutes=require('./routes/stories.js')
+const generateStoriesRoute=require('./routes/generateStory.js')
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/stories', storiesRoutes);
+app.use('/api/generateStory',generateStoriesRoute);
 
 app.get('/', (req, res) => {
   res.send("Running")

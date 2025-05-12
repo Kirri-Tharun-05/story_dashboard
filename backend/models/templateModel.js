@@ -34,47 +34,47 @@ exports.fetchStoryFromDB = async (storytitle) => {
 };
 
 // Save new story and its slides into DB
-exports.saveStoryToDB = async ({ storytitle, metadescription, metakeywords, tags, category, slides }) => {
-  const client = await pool.connect();
-  try {
-    await client.query('BEGIN');
+// exports.saveStoryToDB = async ({ storytitle, metadescription, metakeywords, tags, category, slides }) => {
+//   const client = await pool.connect();
+//   try {
+//     await client.query('BEGIN');
 
-    const insertPost = await client.query(
-      `INSERT INTO posts (canurl, storytitle, metadescription, metakeywords, tags, category)
-       VALUES ($1, $2, $3, $4, $5, $6)
-       RETURNING id`,
-      [
-        storytitle.toLowerCase().replace(/\s+/g, '-'),
-        storytitle,
-        metadescription || '',
-        metakeywords || '',
-        tags || [],
-        category || ''
-      ]
-    );
+//     const insertPost = await client.query(
+//       `INSERT INTO posts (canurl, storytitle, metadescription, metakeywords, tags, category)
+//        VALUES ($1, $2, $3, $4, $5, $6)
+//        RETURNING id`,
+//       [
+//         storytitle.toLowerCase().replace(/\s+/g, '-'),
+//         storytitle,
+//         metadescription || '',
+//         metakeywords || '',
+//         tags || [],
+//         category || ''
+//       ]
+//     );
 
-    const postId = insertPost.rows[0].id;
+//     const postId = insertPost.rows[0].id;
 
-    for (let i = 0; i < slides.length; i++) {
-      const slide = slides[i];
-      await client.query(
-        `INSERT INTO slides (post_id, slide_number, slide_title, slide_content, slide_image_url)
-         VALUES ($1, $2, $3, $4, $5)`,
-        [
-          postId,
-          i + 1,
-          slide.heading,
-          slide.content,
-          slide.background
-        ]
-      );
-    }
+//     for (let i = 0; i < slides.length; i++) {
+//       const slide = slides[i];
+//       await client.query(
+//         `INSERT INTO slides (post_id, slide_number, slide_title, slide_content, slide_image_url)
+//          VALUES ($1, $2, $3, $4, $5)`,
+//         [
+//           postId,
+//           i + 1,
+//           slide.heading,
+//           slide.content,
+//           slide.background
+//         ]
+//       );
+//     }
 
-    await client.query('COMMIT');
-  } catch (err) {
-    await client.query('ROLLBACK');
-    throw err;
-  } finally {
-    client.release();
-  }
-};
+//     await client.query('COMMIT');
+//   } catch (err) {
+//     await client.query('ROLLBACK');
+//     throw err;
+//   } finally {
+//     client.release();
+//   }
+// };

@@ -112,9 +112,9 @@ const StorySlideChat = () => {
             setError('');
             setSlides([]);
             setPreview('');
-
+            console.log(keyword);
             try {
-                const response = await axios.get(`http://localhost:5000/api/template/${keyword}`);
+                const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
                 const data = response.data;
 
                 // Check if the response is correct
@@ -145,27 +145,9 @@ const StorySlideChat = () => {
                 ))}
             </div>
 
-            <div className="chat-input">
-                <input
-                    type="text"
-                    value={keyword}
-                    onChange={handleChange}
-                    onKeyDown={handleSubmit}
-                    placeholder="Type a keyword and press Enter..."
-                />
-            </div>
 
             {/* AMP HTML Preview */}
             {preview && (
-                // <div className="preview-area" dangerouslySetInnerHTML={{ __html: preview }} />
-                // <iframe
-                //     title="AMP Story Preview"
-                //     srcDoc={preview}
-                //     sandbox="allow-scripts allow-same-origin"
-                //     width="360"
-                //     height="600"
-                //     style={{ border: "1px solid #ccc", borderRadius: "8px", marginTop: '20px' }}
-                // ></iframe>
                 <div className="preview-wrapper">
                     <iframe
                         title="AMP Story Preview"
@@ -177,13 +159,22 @@ const StorySlideChat = () => {
                             border: "none",
                             borderRadius: "16px",
                             boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
-                            marginTop: "20px",
-                            width: "360px",
-                            height: "640px",
+                            width: "270px",
+                            height: "480px",
                         }}
                     ></iframe>
                 </div>
             )}
+            <div className="chat-input">
+                <input
+                    type="text"
+                    value={keyword}
+                    onChange={handleChange}
+                    onKeyDown={handleSubmit}
+                    placeholder="Type a keyword and press Enter..."
+                />
+                <button>Enter</button>
+            </div>
         </div>
     );
 };
