@@ -1,96 +1,3 @@
-// // StorySlideChat.js
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import Mustache from 'mustache';
-
-// const StorySlideChat = () => {
-//   const [keyword, setKeyword] = useState('');
-//   const [slides, setSlides] = useState([]);
-//   const [preview, setPreview] = useState('');
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [error, setError] = useState('');
-
-//   const handleChange = (e) => {
-//     setKeyword(e.target.value);
-//   };
-
-//   const handleSubmit = async (e) => {
-//     if (e.key === 'Enter' && keyword.trim() !== '') {
-//       setIsLoading(true);
-//       setError('');
-//       setSlides([]);
-//       setPreview('');
-
-//       try {
-//         const response = await axios.get(`http://localhost:5000/api/template/${keyword}`);
-//         const data = response.data;
-//         console.log(data);
-
-//         if (data && data.slides && Array.isArray(data.slides)) {
-//           setSlides(data.slides);
-//         } else {
-//           setError('Invalid template structure received.');
-//         }
-//       } catch (err) {
-//         console.error(err);
-//         // setError("Couldn't fetch template for that keyword.");
-//       } finally {
-//         setIsLoading(false);
-//       }
-//     }
-//   };
-
-//   const handlePreview = () => {
-//     const template = `
-//       {{#slides}}
-//         <div class="preview-slide">
-//           <h2>{{heading}}</h2>
-//           <p>{{content}}</p>
-//         </div>
-//       {{/slides}}
-//     `;
-//     const renderedHtml = Mustache.render(template, { slides });
-//     setPreview(renderedHtml);
-//   };
-
-//   return (
-//     <div className="chat-container">
-//       <div className="chat-box">
-//         {isLoading && <div className="chat-message">Loading...</div>}
-//         {error && <div className="chat-message error">{error}</div>}
-//         {slides.map((slide, index) => (
-//           <div key={index} className="chat-message">
-//             <strong>{slide.heading}</strong>
-//             <p>{slide.content}</p>
-//           </div>
-//         ))}
-//       </div>
-
-//       <div className="chat-input">
-//         <input
-//           type="text"
-//           value={keyword}
-//           onChange={handleChange}
-//           onKeyDown={handleSubmit}
-//           placeholder="Type a keyword and press Enter..."
-//         />
-//         {slides.length > 0 && (
-//           <button onClick={handlePreview} style={{ marginLeft: '10px' }}>
-//             Preview
-//           </button>
-//         )}
-//       </div>
-
-//       {preview && (
-//         <div className="preview-area" dangerouslySetInnerHTML={{ __html: preview }} />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default StorySlideChat;
-
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import Mustache from 'mustache';
@@ -115,7 +22,7 @@ const StorySlideChat = () => {
             console.log(keyword);
             try {
                 const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
-                console.log(response);
+                // console.log(response);
                 const data = response.data;
 
                 // Check if the response is correct

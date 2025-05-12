@@ -1,0 +1,226 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{title}}</title>
+    <link rel="canonical" href="self.html" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <style amp-boilerplate>
+      body { visibility: hidden }
+    </style>
+    <noscript>
+      <style amp-boilerplate>body { visibility: visible }</style>
+    </noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <style amp-custom>
+      amp-story {
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+      }
+
+      amp-story-page {
+        position: relative;
+        height: 100vh;
+      }
+
+      h1, h2 {
+        font-weight: bold;
+        text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+        font-family: 'Poppins', sans-serif;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #FFDD00;
+        margin: 0 0 20px 0;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        color: #fff;
+        margin: 10px 0;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 5px 0;
+        line-height: 1.5;
+      }
+
+      /* Text Effects */
+
+      /* Typewriter */
+      .typewriter {
+        overflow: hidden;
+        border-right: .15em solid #FFDD00;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .1em;
+        animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #FFDD00 }
+      }
+
+      /* Slide-in */
+      .slide-in {
+        opacity: 0;
+        transform: translateX(-100%);
+        animation: slideIn 1s forwards;
+      }
+
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Fade-up */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1s ease-out forwards;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Bounce CTA */
+      .bounce {
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0) }
+        50% { transform: translateY(-10px) }
+      }
+
+      /* CTA Button */
+      .cta-button {
+        display: inline-block;
+        background-color: #FFDD00;
+        color: #000;
+        padding: 12px 24px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1.2rem;
+      }
+
+      .cta-button:hover {
+        background-color: #e6b800;
+        transform: translateY(-3px);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        h2 {
+          font-size: 1.2rem;
+        }
+
+        .cta-button {
+          font-size: 1rem;
+          padding: 10px 20px;
+        }
+      }
+
+      amp-story-grid-layer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <amp-story standalone
+      title="{{title}}"
+      publisher="Your Brand"
+      publisher-logo-src="https://yourbrand.com/logo.png"
+      poster-portrait-src="{{slides.image_urls.0}}">
+
+      <!-- Page 1: Cover -->
+      <amp-story-page id="cover">
+        <amp-story-grid-layer template="fill">
+          <amp-img src="{{slides.image_urls.0}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h1 class="slide-in">{{slides.name}}</h1>
+          <p class="typewriter">Explore the taste of Jaipur</p>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <!-- Page 2: Cuisine & Cost -->
+      <amp-story-page id="cuisine-cost">
+        <amp-story-grid-layer template="fill">
+          <amp-img src="{{slides.image_urls.1}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h2 class="slide-in">Cuisine</h2>
+          <p class="fade-up">{{slides.cuisine}}</p>
+          <h2 class="slide-in">Avg. Cost for Two</h2>
+          <p class="fade-up">₹{{slides.average_cost}}</p>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <!-- Page 3: Location & Timing -->
+      <amp-story-page id="location-timing">
+        <amp-story-grid-layer template="fill">
+          <amp-img src="{{slides.image_urls.2}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h2 class="slide-in">Location</h2>
+          <p class="fade-up">{{slides.location}}</p>
+          <h2 class="slide-in">Timing</h2>
+          <p class="fade-up">{{slides.timing}}</p>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <!-- Page 4: Ambiance -->
+      <amp-story-page id="ambiance">
+        <amp-story-grid-layer template="fill">
+          <amp-img src="{{slides.image_urls.3}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h2 class="slide-in">Ambiance</h2>
+          <p class="fade-up">{{slides.ambiance_desc}}</p>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <!-- Page 5: CTA -->
+      <amp-story-page id="zomato-link">
+        <amp-story-grid-layer template="fill">
+          <amp-img src="{{slides.image_urls.4}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h2 class="slide-in">Ready to Visit?</h2>
+          <a href="{{slides.zomato_link}}" class="cta-button bounce" target="_blank">View on Zomato</a>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+    </amp-story>
+  </body>
+</html>

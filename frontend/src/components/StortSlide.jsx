@@ -8,49 +8,41 @@ const StorySlideChat = () => {
     const [error, setError] = useState('');
     const playerRef = useRef(null);
 
-    const handleChange = (e) => {
-        setKeyword(e.target.value);
-    };
+    const handleChange = (e) => setKeyword(e.target.value);
 
-    const handleSubmit = async (e) => {
-        if (e.key === 'Enter' && keyword.trim() !== '') {
-            setIsLoading(true);
-            setError('');
-            setStoryUrl('');
-            try {
-                // API generates the story and saves it as HTML file (e.g., /stories/ai.html)
-                const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
-                if (response.status === 200) {
-                    const storyFile = `${keyword}.html`;
-                    setStoryUrl(`http://localhost:5000/stories/${storyFile}`);
-                } else {
-                    setError('Failed to generate story.');
-                }
-            } catch (err) {
-                console.error(err);
-                setError("Couldn't fetch story for that keyword.");
-            } finally {
-                setIsLoading(false);
+    const fetchStory = async () => {
+        if (keyword.trim() === '') return;
+
+        setIsLoading(true);
+        setError('');
+        setStoryUrl('');
+
+        try {
+            const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
+            if (response.status === 200) {
+                const storyFile = `${encodeURIComponent(keyword)}.html`;
+                const fullUrl = `http://localhost:5000/stories/${storyFile}`;
+                setStoryUrl(fullUrl);
+            } else {
+                setError('Failed to generate story.');
             }
+        } catch (err) {
+            console.error(err);
+            setError("Couldn't fetch story for that keyword.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
-    // Re-render the amp-story-player content
-    useEffect(() => {
-        if (storyUrl && playerRef.current) {
-            playerRef.current.innerHTML = ''; // clear existing story
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') fetchStory();
+    };
 
-            const anchor = document.createElement('a');
-            anchor.href = storyUrl;
-            anchor.textContent = 'Your AMP Story';
-            playerRef.current.appendChild(anchor);
-        }
-    }, [storyUrl]);
+    const handleClick = () => fetchStory();
 
-    // Load amp-story-player script once
+    // Inject AMP player script and stylesheet once
     useEffect(() => {
-        const existing = document.querySelector('script[src*="amp-story-player"]');
-        if (!existing) {
+        if (!document.querySelector('script[src*="amp-story-player"]')) {
             const script = document.createElement('script');
             script.src = 'https://cdn.ampproject.org/amp-story-player-v0.js';
             script.async = true;
@@ -63,6 +55,27 @@ const StorySlideChat = () => {
         }
     }, []);
 
+    // Render story inside amp-story-player manually
+    useEffect(() => {
+        if (storyUrl && playerRef.current) {
+            playerRef.current.innerHTML = ''; // Clear previous content
+
+            const player = document.createElement('amp-story-player');
+            player.style.width = '270px';
+            player.style.height = '480px';
+            player.style.borderRadius = '16px';
+            player.style.boxShadow = '0 8px 24px rgba(0,0,0,0.2)';
+            player.style.overflow = 'hidden';
+
+            const a = document.createElement('a');
+            a.href = storyUrl;
+            a.textContent = 'Your AMP Story';
+            player.appendChild(a);
+
+            playerRef.current.appendChild(player);
+        }
+    }, [storyUrl]);
+
     return (
         <div className="chat-container">
             <div className="chat-box">
@@ -70,36 +83,21 @@ const StorySlideChat = () => {
                 {error && <div className="chat-message error">{error}</div>}
             </div>
 
-            {/* AMP Story Preview */}
-            {storyUrl && (
-                <div className="preview-wrapper">
-                    <amp-story-player
-                        style={{
-                            width: '270px',
-                            height: '480px',
-                            borderRadius: '16px',
-                            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-                            overflow: 'hidden',
-                        }}
-                        ref={playerRef}
-                    >
-                        {/* AMP story link will be injected here */}
-                    </amp-story-player>
-                </div>
-            )}
+            <div className="preview-wrapper" ref={playerRef}></div>
 
             <div className="chat-input">
                 <input
                     type="text"
                     value={keyword}
                     onChange={handleChange}
-                    onKeyDown={handleSubmit}
+                    onKeyDown={handleKeyDown}
                     placeholder="Type a keyword and press Enter..."
                 />
-                <button disabled>Enter</button>
+                <button onClick={handleClick}>Enter</button>
             </div>
         </div>
     );
 };
 
 export default StorySlideChat;
+

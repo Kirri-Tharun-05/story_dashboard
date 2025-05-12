@@ -1,0 +1,219 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{story_title}}</title>
+    <link rel="canonical" href="self.html" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <style amp-boilerplate>
+      body { visibility: hidden } 
+    </style>
+    <noscript>
+      <style amp-boilerplate>body { visibility: visible }</style>
+    </noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
+    <style amp-custom>
+      amp-story {
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+      }
+
+      /* General styles for the pages */
+      amp-story-page {
+        position: relative;
+        height: 100vh;
+      }
+
+      /* Text Styling */
+      h1, h2 {
+        text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 3rem;
+        text-align: center;
+        margin: 20px 0;
+        color: #FFDD00; /* Bright yellow */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        font-family: 'Poppins', sans-serif;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 10px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-family: 'Poppins', sans-serif;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 10px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        line-height: 1.6;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #FFDD00;
+        color: #000;
+        padding: 12px 24px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1.2rem;
+      }
+
+      .cta-button:hover {
+        background-color: #e6b800;
+        transform: translateY(-3px);
+      }
+
+      /* Animation for zoom-out effect */
+      .zoom-out-effect {
+        animation: zoomOut 10s infinite alternate;
+      }
+
+      @keyframes zoomOut {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.2); /* Zoom out effect */
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <amp-story standalone
+      title="{{story_title}}"
+      publisher="My Restaurant Web Story"
+      publisher-logo-src="https://example.com/logo.png"
+      poster-portrait-src="https://example.com/poster.jpg">
+
+      {{#slides}}
+
+        {{#type.intro}}
+        <amp-story-page id="intro-{{@index}}">
+          <amp-story-grid-layer template="fill">
+            <amp-animation layout="nodisplay">
+              <script type="application/json">
+                {
+                  "duration": "10s",
+                  "direction": "normal",
+                  "keyframes": [
+                    {
+                      "transform": "scale(1)",
+                      "offset": 0
+                    },
+                    {
+                      "transform": "scale(1.2)",
+                      "offset": 0.5
+                    },
+                    {
+                      "transform": "scale(1)",
+                      "offset": 1
+                    }
+                  ]
+                }
+              </script>
+            </amp-animation>
+            <amp-img src="{{image_url}}" width="720" height="1280" layout="responsive" class="zoom-out-effect"></amp-img>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="vertical">
+            <h1>{{heading}}</h1>
+            <h2>{{subheading}}</h2>
+          </amp-story-grid-layer>
+        </amp-story-page>
+        {{/type.intro}}
+
+        {{#type.restaurant}}
+        <amp-story-page id="restaurant-{{@index}}">
+          <amp-story-grid-layer template="fill">
+            <amp-animation layout="nodisplay">
+              <script type="application/json">
+                {
+                  "duration": "10s",
+                  "direction": "normal",
+                  "keyframes": [
+                    {
+                      "transform": "scale(1)",
+                      "offset": 0
+                    },
+                    {
+                      "transform": "scale(1.2)",
+                      "offset": 0.5
+                    },
+                    {
+                      "transform": "scale(1)",
+                      "offset": 1
+                    }
+                  ]
+                }
+              </script>
+            </amp-animation>
+            <amp-img src="{{image_url}}" width="720" height="1280" layout="responsive" class="zoom-out-effect"></amp-img>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="vertical">
+            <h1>{{restaurant_name}}</h1>
+            <p><strong>Location:</strong> {{location}}</p>
+            <p><strong>Cuisine:</strong> {{cuisine}}</p>
+            <p><strong>Rating:</strong> {{rating}} ⭐</p>
+            <p>{{description}}</p>
+          </amp-story-grid-layer>
+        </amp-story-page>
+        {{/type.restaurant}}
+
+        {{#type.outro}}
+        <amp-story-page id="outro-{{@index}}">
+          <amp-story-grid-layer template="fill">
+            <amp-animation layout="nodisplay">
+              <script type="application/json">
+                {
+                  "duration": "10s",
+                  "direction": "normal",
+                  "keyframes": [
+                    {
+                      "transform": "scale(1)",
+                      "offset": 0
+                    },
+                    {
+                      "transform": "scale(1.2)",
+                      "offset": 0.5
+                    },
+                    {
+                      "transform": "scale(1)",
+                      "offset": 1
+                    }
+                  ]
+                }
+              </script>
+            </amp-animation>
+            <amp-img src="{{image_url}}" width="720" height="1280" layout="responsive" class="zoom-out-effect"></amp-img>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="vertical">
+            <h1>{{heading}}</h1>
+            <h2>{{subheading}}</h2>
+            {{#cta_link}}
+              <a href="{{cta_link}}" class="cta-button">{{cta_text}}</a>
+            {{/cta_link}}
+          </amp-story-grid-layer>
+        </amp-story-page>
+        {{/type.outro}}
+
+      {{/slides}}
+
+    </amp-story>
+  </body>
+</html>

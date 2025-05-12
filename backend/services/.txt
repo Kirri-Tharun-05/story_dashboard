@@ -1,0 +1,10 @@
+[{"intro": true, "heading": "Tokyo’s Sushi Paradise", "image_url": "https://example.com/tokyo-sushi-intro.jpg",
+ "subheading": "Experience the most authentic sushi in the world!"},
+  {"rating": "4.9", "cuisine": "Traditional Edomae Sushi", "location": "Minato City, Tokyo", "image_url": "https://example.com/saito.jpg",
+   "restaurant": true, "description": "A Michelin-starred experience, Sushi Saito offers delicate flavors,
+    impeccable technique, and omakase perfection.", "restaurant_name": "Sushi Saito"}, 
+    {"rating": "4.5", "cuisine": "Conveyor Belt Sushi", "location": "Shibuya, Tokyo", "image_url": "https://example.com/uobei.jpg",
+     "restaurant": true, "description": "Fast, fun, and flavorful — Uobei is the ultimate quick-stop sushi bar for both tourists and locals.",
+      "restaurant_name": "Uobei Shibuya"}, {"outro": true, "heading": "Ready to Roll?", "cta_link": "https://example.com/tokyo-sushi-guide",
+       "cta_text": "Explore Tokyo Eats",
+ "image_url": "https://example.com/tokyo-sushi-outro.jpg", "subheading": "Tokyo is waiting. Eat like a local!"}]

@@ -3,6 +3,8 @@ import Chat2 from './components/Chat2.jsx'
 import Chat from './components/Chat.jsx'
 import Dashboard1 from './components/Dashboard1.jsx'
 import Story from './components/StortSlide.jsx'
+import Storypage from './components/Storypage.jsx'
+import Chat3 from './components/Chat3.jsx'
 
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
@@ -14,9 +16,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Dashboard1 />} />
-          {/* <Route path='/dashboard' element={<Dashboard1 />} /> */}
+          <Route path='/dashboard' element={<Dashboard1 />} />
           <Route path='/generateStory' element={<Chat />} />
           <Route path='/generateStory1' element={<Story />} />
+          <Route path='/storypage' element={<Storypage />} />
+          <Route path='/chat3' element={<Chat3 />} />
         </Routes>
       </BrowserRouter>
     </>

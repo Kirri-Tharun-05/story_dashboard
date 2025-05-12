@@ -2,44 +2,47 @@ const { fetchTemplateFromDB, saveTemplateToDB } = require('../models/templateMod
 const path=require('path');
 const { renderAmpStory } = require('../services/ampRenderer');
 const { fetchMcpData } = require('../services/mcpService');
+const fs = require('fs');
 
-// exports.getStoryByKeyword = async (req, res) => {
-//   const { keyword } = req.params;
-//   console.log(keyword);
-//   try {
-//     const data = await fetchMcpData(keyword); // mock content
-//     const ampHtml = renderAmpStory(data);
-//     console.log(ampHtml);
-//     res.setHeader('Content-Type', 'text/html');
-//     res.send(ampHtml);
-//   } catch (err) {
-//     console.error('Error fetching template:', err);
-//     res.status(500).json({ error: 'Failed to fetch template' });
-//   }
-// };
+
+exports.getStoryByKeyword = async (req, res) => {
+  const { keyword } = req.params;
+  console.log(keyword);
+  try {
+    const data = await fetchMcpData(keyword); // mock content
+    console.log("Data : ",data)
+    const ampHtml = renderAmpStory(data);
+    console.log(ampHtml);
+    res.setHeader('Content-Type', 'text/html');
+    res.send(ampHtml);
+  } catch (err) {
+    console.error('Error fetching template:', err);
+    res.status(500).json({ error: 'Failed to fetch template' });
+  }
+};
 
 
 
 // if not work then remove this and include the upper part which is commented
-exports.getStoryByKeyword = async (req, res) => {
-  const { keyword } = req.params;
-  console.log(keyword);
+// exports.getStoryByKeyword = async (req, res) => {
+//   const { keyword } = req.params;
+//   console.log(keyword);
 
-  try {
-    const data = await fetchMcpData(keyword); // Fetch from DB
-    const ampHtml = renderAmpStory(data); // Convert to AMP HTML
+//   try {
+//     const data = await fetchMcpData(keyword); // Fetch from DB
+//     const ampHtml = renderAmpStory(data); // Convert to AMP HTML
 
-    // Save HTML to /stories directory
-    const storyPath = path.join(__dirname, '../stories', `${keyword}.html`);
-    fs.writeFileSync(storyPath, ampHtml);
+//     // Save HTML to /stories directory
+//     const storyPath = path.join(__dirname, '../stories', `${keyword}.html`);
+//     fs.writeFileSync(storyPath, ampHtml);
 
-    // Return only success
-    res.status(200).json({ success: true, storyUrl: `/stories/${keyword}.html` });
-  } catch (err) {
-    console.error('Error fetching template:', err);
-    res.status(500).json({ error: 'Failed to fetch or save template' });
-  }
-};
+//     // Return only success
+//     res.status(200).json({ success: true, storyUrl: `/stories/${keyword}.html` });
+//   } catch (err) {
+//     console.error('Error fetching template:', err);
+//     res.status(500).json({ error: 'Failed to fetch or save template' });
+//   }
+// };
 
 // exports.storeTemplate = async (req, res) => {
 //   const { keyword, data } = req.body;

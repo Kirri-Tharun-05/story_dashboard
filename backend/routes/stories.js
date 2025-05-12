@@ -37,12 +37,12 @@ const router = express.Router();
 router.get('/by-writer', async (req, res) => {
   try {
     const { writername } = req.query;
-    console.log(writername);
+    // console.log(writername);
     const result = await pool.query(
       'SELECT * FROM stories WHERE writername ILIKE $1',
       [`%${writername}%`]
     );
-    console.log(result);
+    // console.log(result);
     const storiesWithImages = await Promise.all(
       result.rows.map(async (story) => {
         try {
