@@ -7,7 +7,9 @@ const fs = require('fs');
 
 
 exports.getStoryByKeyword = async (req, res) => {
-  const { keyword } = req.params;
+  // const { keyword } = req.params;
+  const keyword = decodeURIComponent(req.params.keyword);
+  console.log(keyword);
   // console.log(keyword);
   try {
     const data = await fetchMcpData(keyword); // mock content

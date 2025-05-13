@@ -95,7 +95,10 @@ const StorySlideChat = () => {
       setPreview('');
 
       try {
-        const response = await axios.get(`https://story-dashboard-backend.onrender.com/api/generateStory/${keyword}`);
+        const encodedKeyword = encodeURIComponent(keyword);
+        // axios.get(`/api/generateStory/${encodedKeyword}`);
+
+        const response = await axios.get(`https://storydashboard-production.up.railway.app/api/generateStory/${encodedKeyword}`);
         if (response.data) {
           // Delay preview update slightly for smoother transition
           setTimeout(() => {
@@ -155,3 +158,13 @@ const StorySlideChat = () => {
 };
 
 export default StorySlideChat;
+
+
+// restaurants names
+// Blackout Club & Terrace
+// Purgatory 777
+
+
+// dish names
+// pizzas
+// Croissants
