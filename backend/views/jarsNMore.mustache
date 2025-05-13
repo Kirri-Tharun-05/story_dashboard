@@ -1,0 +1,205 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{title}}</title>
+    <link rel="canonical" href="self.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+
+    <style amp-boilerplate>
+      body { visibility: hidden }
+    </style>
+    <noscript>
+      <style amp-boilerplate>body { visibility: visible }</style>
+    </noscript>
+
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+
+    <style amp-custom>
+      amp-story {
+        font-family: "Sour Gummy", sans-serif;
+        color: #fff;
+      }
+
+      h1, h2 {
+        font-weight: bold;
+        margin: 0.3em 0;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #FFDD00;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+      }
+
+      h2 {
+        color: #FFDD00;
+        font-size: 1.8rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin: 0.3em 0;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+      }
+
+      .text-bottom {
+        justify-content: end;
+        padding: 0 16px 32px;
+      }
+
+      .text-overlay {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 16px;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #FFDD00;
+        color: #000;
+        padding: 12px 24px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1.2rem;
+      }
+
+      .cta-button:hover {
+        background-color: #e6b800;
+        transform: translateY(-3px);
+      }
+
+      @keyframes zoomInOut {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+
+      .zoom-in-out {
+        animation: zoomInOut 20s ease-in-out infinite;
+      }
+      .text-overlay {
+       position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2));
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+      }
+
+      .text-overlay-up{
+        position: absolute;
+  bottom: 7rem;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2));
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+  color: #fff;
+  margin-right:10rem;
+  }
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.3rem;
+        }
+        .cta-button {
+          font-size: 1rem;
+          padding: 10px 20px;
+        }
+        .text-overlay {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <amp-story standalone
+      title="{{story_title}}"
+      publisher="WebFoodies"
+      publisher-logo-src="https://example.com/logo.png"
+      poster-portrait-src="{{image_url}}">
+
+      <!-- Intro Slide -->
+      <amp-story-page id="intro">
+        <amp-story-grid-layer template="fill">
+          <amp-img class="zoom-in-out" src="{{image_url}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical" class="text-bottom">
+          <div class="text-overlay">
+            <h1>{{restaurant_name}}</h1>
+            <p>{{address}}</p>
+            <p>Contact: {{contact}}</p>
+            <p>Open: {{opening_hours}}</p>
+            <p>Avg Cost: {{avg_cost}}</p>
+          </div>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <!-- Dish Slides -->
+      {{#dishes}}
+      <amp-story-page id="{{name}}">
+        <amp-story-grid-layer template="fill">
+          <amp-img class="zoom-in-out" src="{{image_url}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical" class="text-bottom">
+          <div class="text-overlay">
+            <h2>{{name}}</h2>
+            <p>{{description}}</p>
+            <p>Price: ₹{{price}}</p>
+          </div>
+        </amp-story-grid-layer>
+      </amp-story-page>
+      {{/dishes}}
+
+      <!-- Outro Slide -->
+      <amp-story-page id="outro">
+        <amp-story-grid-layer template="fill">
+          <amp-img class="zoom-in-out" src="{{image_url}}" width="720" height="1280" layout="responsive"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical" class="text-bottom">
+          <div class="text-overlay-up">
+            <h2>Visit {{restaurant_name}}</h2>
+            <p>Enjoy the best of {{category_name}}!</p>
+          </div>
+          <amp-story-cta-layer>
+            <a href="{{zomato_url}}" class="cta-button">Order Now</a>
+          </amp-story-cta-layer>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+    </amp-story>
+  </body>
+</html>

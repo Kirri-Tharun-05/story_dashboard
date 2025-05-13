@@ -4,41 +4,43 @@
     <meta charset="utf-8" />
     <title>{{title}}</title>
     <link rel="canonical" href="self.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-    <style amp-boilerplate>
-      body { visibility: hidden }
-    </style>
-    <noscript>
-      <style amp-boilerplate>body { visibility: visible }</style>
-    </noscript>
+    <style amp-boilerplate>body { visibility: hidden }</style>
+    <noscript><style amp-boilerplate>body { visibility: visible }</style></noscript>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+
     <style amp-custom>
       amp-story {
-        font-family: 'Arial', sans-serif;
+        font-family: "Sour Gummy", sans-serif;
         color: #fff;
       }
 
       h1, h2 {
         font-weight: bold;
-        text-shadow: 0 4px 6px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.3);
-        font-family: 'Poppins', sans-serif;
         margin: 0.3em 0;
       }
 
       h1 {
         font-size: 3rem;
         color: #FFDD00;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
       }
 
       h2 {
+        color: #FFDD00;
         font-size: 1.8rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
       }
 
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin: 0.3em 0;
         line-height: 1.5;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
       }
 
       @keyframes zoomInOut {
@@ -66,15 +68,42 @@
       }
 
       .text-overlay {
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2));
-        backdrop-filter: blur(5px);
-        padding: 20px;
-        border-radius: 12px;
-        margin: 0 20px;
-        text-align: center;
-        color: #fff;
+       position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2));
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
       }
 
+      .text-overlay-up{
+        position: absolute;
+  bottom: 7rem;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2));
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+  color: #fff;
+  margin-right:10rem;
+  }
       .cta-button {
         display: inline-block;
         background-color: #FFDD00;
@@ -94,26 +123,7 @@
       .cta-button:hover {
         background-color: #e6b800;
         transform: translateY(-3px);
-      }
-
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 2rem;
-        }
-
-        h2 {
-          font-size: 1.3rem;
-        }
-
-        .cta-button {
-          font-size: 1rem;
-          padding: 10px 20px;
-        }
-
-        .text-overlay {
-          padding: 15px;
-        }
-      }
+      }    
     </style>
   </head>
 
@@ -182,24 +192,18 @@
 
       <!-- Page 5: Zomato Link CTA -->
       <amp-story-page id="zomato-link">
-  <!-- Background Image Layer -->
-  <amp-story-grid-layer template="fill">
-    <amp-img src="{{slides.image_urls.4}}" width="720" height="1280" layout="responsive" class="zoom-in-out"></amp-img>
-  </amp-story-grid-layer>
-
-  <!-- Heading Text Layer -->
-  <amp-story-grid-layer template="vertical">
-    <div class="text-overlay fade-slide-up">
-      <h2>Ready to Visit?</h2>
-    </div>
-  </amp-story-grid-layer>
-
-  <!-- ✅ Call-to-action link layer -->
-  <amp-story-cta-layer>
-    <a href="{{slides.zomato_link}}" class="cta-button" target="_blank">View on Zomato</a>
-  </amp-story-cta-layer>
-</amp-story-page>
-
+        <amp-story-grid-layer template="fill">
+          <amp-img src="{{slides.image_urls.4}}" width="720" height="1280" layout="responsive" class="zoom-in-out"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <div class="text-overlay-up fade-slide-up">
+            <h2>Ready to Visit?</h2>
+          </div>
+        </amp-story-grid-layer>
+        <amp-story-cta-layer>
+          <a href="{{slides.zomato_link}}" class="cta-button" target="_blank">View on Zomato</a>
+        </amp-story-cta-layer>
+      </amp-story-page>
 
     </amp-story>
   </body>

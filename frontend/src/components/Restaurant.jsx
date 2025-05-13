@@ -78,7 +78,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../chat3.css'; // Make sure CSS below is in this file
 
-const StorySlideChat = () => {
+const Restaurant = () => {
   const [keyword, setKeyword] = useState('');
   const [preview, setPreview] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -95,7 +95,7 @@ const StorySlideChat = () => {
       setPreview('');
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
+        const response = await axios.get(`http://localhost:5000/api/restaurant/generateStory/${keyword}`);
         if (response.data) {
           // Delay preview update slightly for smoother transition
           setTimeout(() => {
@@ -115,7 +115,7 @@ const StorySlideChat = () => {
 
   return (
     <div className="story-container">
-      <h1>Story Generator</h1>
+      <h1>Dish Story Generator</h1>
 
       <div className="input-section">
         <div className="input-wrapper">
@@ -129,7 +129,6 @@ const StorySlideChat = () => {
           <button onClick={(e) => handleSubmit(e, true)}>Create</button>
         </div>
       </div>
-
 
       {isLoading && <p className="status loading">Loading...</p>}
       {error && <p className="status error">{error}</p>}
@@ -154,4 +153,6 @@ const StorySlideChat = () => {
   );
 };
 
-export default StorySlideChat;
+export default Restaurant;
+
+

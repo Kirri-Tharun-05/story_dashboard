@@ -1,4 +1,4 @@
-.story-container {
+/* .story-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,4 +82,104 @@ h1 {
   opacity: 1;
   transform: translateY(0);
   max-height: 1000px; 
+}
+ */
+.story-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #1e1f29, #2e3142);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.input-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 90px 12px 16px; /* space on the right for button */
+  border-radius: 30px;
+  border: 2px solid #444;
+  font-size: 1.2rem;
+  outline: none;
+  background-color: #1a1b26;
+  color: #f1f1f1;
+  transition: all 0.2s;
+
+}
+
+.input-wrapper input:focus {
+  border-color: #8ec5fc;
+  background-color: #232438;
+}
+
+.input-wrapper button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.input-wrapper button:hover {
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.status.loading {
+  color: #007bff;
+}
+
+.status.error {
+  color: #d9534f;
+}
+
+.preview-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.preview-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.preview-wrapper.show {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 1000px;
 }
