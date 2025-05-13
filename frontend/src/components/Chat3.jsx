@@ -95,7 +95,7 @@ const StorySlideChat = () => {
       setPreview('');
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/generateStory/${keyword}`);
+        const response = await axios.get(`https://story-dashboard-backend.onrender.com/api/generateStory/${keyword}`);
         if (response.data) {
           // Delay preview update slightly for smoother transition
           setTimeout(() => {
