@@ -98,7 +98,7 @@ const StorySlideChat = () => {
         const encodedKeyword = encodeURIComponent(keyword);
         // axios.get(`/api/generateStory/${encodedKeyword}`);
 
-        const response = await axios.get(`https://storydashboard-production.up.railway.app/api/generateStory/${encodedKeyword}`);
+        const response = await axios.get(`https://story-dashboard-backend.onrender.com/api/generateStory/${encodedKeyword}`);
         if (response.data) {
           // Delay preview update slightly for smoother transition
           setTimeout(() => {
