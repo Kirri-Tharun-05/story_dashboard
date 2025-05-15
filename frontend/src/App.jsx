@@ -7,6 +7,7 @@ import Restaurant from './components/Restaurant.jsx'
 import Restaurant1 from './components/Restaurant2.jsx'
 import Test1 from './components/Test1.jsx';
 import Test2 from './components/Test2.jsx';
+import UrlBasedStories from './components/UrlBasedStories.jsx'
 
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/dishes1' element={< Restaurant1/>} />
           <Route path='/test1' element={< Test1/>} />
           <Route path='/test2' element={< Test2/>} />
+           <Route path="/restaurant/:category?" element={<UrlBasedStories />} />
         </Routes>
       </BrowserRouter>
     </>
