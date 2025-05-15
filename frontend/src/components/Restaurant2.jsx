@@ -546,7 +546,7 @@ const Restaurant = () => {
             value={keyword}
             onChange={handleChange}
             onKeyDown={handleSubmit}
-            placeholder="Type a restaurant or select a category"
+            placeholder="Search a Category"
           />
           <button onClick={(e) => handleSubmit(e, true)}>Create</button>
         </div>
