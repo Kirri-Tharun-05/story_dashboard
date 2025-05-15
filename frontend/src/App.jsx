@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Chat2 from './components/Chat2.jsx'
 import Chat from './components/Chat.jsx'
 import Dashboard1 from './components/Dashboard1.jsx'
-import Story from './components/StortSlide.jsx'
-import Storypage from './components/Storypage.jsx'
 import Chat3 from './components/Restaurant.jsx'
 import Restaurant from './components/Restaurant.jsx'
 import Restaurant1 from './components/Restaurant2.jsx'
+import Test1 from './components/Test1.jsx';
+import Test2 from './components/Test2.jsx';
 
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
@@ -25,6 +25,8 @@ function App() {
           <Route path='/restaurants' element={<Chat3 />} />
           <Route path='/dishes' element={< Restaurant/>} />
           <Route path='/dishes1' element={< Restaurant1/>} />
+          <Route path='/test1' element={< Test1/>} />
+          <Route path='/test2' element={< Test2/>} />
         </Routes>
       </BrowserRouter>
     </>

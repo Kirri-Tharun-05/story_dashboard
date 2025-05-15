@@ -15,6 +15,19 @@ exports.renderAmpStoryForRestaurant = (data) => {
   return mustache.render(template, data);
 };
 
+exports.renderAmpStoryForTestOne = (data) => {
+  // const templatePath = path.join(__dirname, '../views/1.mustache');
+  const templatePath = path.join(__dirname, '../views/jarsNMore.mustache');
+  const template = fs.readFileSync(templatePath, 'utf8');
+  return mustache.render(template, data);
+};
+exports.renderAmpStoryForTestTwo = (data) => {
+  // const templatePath = path.join(__dirname, '../views/1.mustache');
+  const templatePath = path.join(__dirname, '../views/test.mustache');
+  const template = fs.readFileSync(templatePath, 'utf8');
+  return mustache.render(template, data);
+};
+
 // [
   // "https://b.zmtcdn.com/data/pictures/chains/5/20920615/5c13ba4541b16f7c71a83f78700ecb3c.jpg?output-format=webp",
   // "https://b.zmtcdn.com/data/pictures/chains/5/20920615/e56c6683695f8fc673ef52cb2b5cb9a3.jpg?output-format=webp",
