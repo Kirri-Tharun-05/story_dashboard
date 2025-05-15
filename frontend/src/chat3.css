@@ -183,3 +183,92 @@ h1 {
   transform: translateY(0);
   max-height: 1000px;
 }
+
+/* 
+.iframe-container {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.nav-arrow.left {
+  left: -40px;
+}
+
+.nav-arrow.right {
+  right: -40px;
+}
+
+.nav-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+} */
+ 
+/* .preview-container{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.left .right{
+  height: 10vh;
+} */
+ .preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 16px; /* space between arrows and preview */
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* The arrows */
+.preview-container button.left,
+.preview-container button.right {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 60%;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  flex-shrink: 0; /* prevent shrinking */
+  /* box-shadow: 0 2px 6px rgba(0,0,0,0.3); */
+   background: linear-gradient(135deg, #8e2de2, #4a00e0);
+}
+
+.preview-container button.left:hover,
+.preview-container button.right:hover {
+ box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); /* purple on hover */
+}
+
+/* Optional: Make sure the iframe preview scales well */
+.preview-wrapper {
+  flex-shrink: 0;
+  width: 300px; /* same as iframe width */
+  height: 550px; /* same as iframe height */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Remove absolute positioning for the buttons */
+.preview-container button.left,
+.preview-container button.right {
+  position: static;
+}
