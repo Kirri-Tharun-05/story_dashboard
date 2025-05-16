@@ -153,7 +153,7 @@
       poster-portrait-src="{{image_url}}">
 
       <!-- Intro Slide -->
-      <amp-story-page id="intro">
+      <amp-story-page id="intro-{{category_name}}">
         <amp-story-grid-layer template="fill">
           <amp-img class="zoom-in-out" src="{{image_url}}" width="720" height="1280" layout="responsive"></amp-img>
         </amp-story-grid-layer>
@@ -170,7 +170,7 @@
 
       <!-- Dish Slides -->
       {{#dishes}}
-      <amp-story-page id="{{name}}">
+      <amp-story-page id="{{name}}-{{category_name}}">
         <amp-story-grid-layer template="fill">
           <amp-img class="zoom-in-out" src="{{image_url}}" width="720" height="1280" layout="responsive"></amp-img>
         </amp-story-grid-layer>
@@ -185,7 +185,7 @@
       {{/dishes}}
 
       <!-- Outro Slide -->
-      <amp-story-page id="outro">
+      <amp-story-page id="outro-{{category_name}}">
         <amp-story-grid-layer template="fill">
           <amp-img class="zoom-in-out" src="{{image_url}}" width="720" height="1280" layout="responsive"></amp-img>
         </amp-story-grid-layer>
