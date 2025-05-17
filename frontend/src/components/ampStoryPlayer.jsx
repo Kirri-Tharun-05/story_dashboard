@@ -138,7 +138,7 @@ const Restaurant = () => {
   const [error, setError] = useState('');
   const [tempCount, setTempCount] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
-  const [iframeKey, setIframeKey] = useState(0);
+  const [showPlayer, setShowPlayer] = useState(true);
 
   // Load AMP player script only once
   useEffect(() => {
@@ -177,8 +177,13 @@ const Restaurant = () => {
     const baseUrl = 'https://story-dashboard-backend.onrender.com/stories';
     const endpoint = tempCount % 2 === 1 ? 'test1' : 'test2';
     const fullUrl = `${baseUrl}/${endpoint}/${encodeURIComponent(kw)}`;
-    setPreviewUrl(fullUrl);
-    setIframeKey(prev => prev + 1); // force remount
+
+    // Trigger remount
+    setShowPlayer(false);
+    setTimeout(() => {
+      setPreviewUrl(fullUrl);
+      setShowPlayer(true);
+    }, 50);
   };
 
   const handleDirectionChange = (dir) => {
@@ -196,6 +201,7 @@ const Restaurant = () => {
           ? (currentIndex + 1) % categories.length
           : (currentIndex - 1 + categories.length) % categories.length;
 
+      setAnimationClass(''); // Reset animation
       navigate(`/ampStoryPlayer/restaurant/${categories[newIndex]}`);
     }, 400);
   };
@@ -214,9 +220,8 @@ const Restaurant = () => {
         </button>
 
         <div className={`preview-wrapper show ${animationClass}`}>
-          {previewUrl && (
+          {showPlayer && previewUrl && (
             <amp-story-player
-              key={iframeKey}
               style={{
                 width: '360px',
                 height: '600px',
@@ -224,10 +229,7 @@ const Restaurant = () => {
                 overflow: 'hidden'
               }}
             >
-              <a
-                href={previewUrl}
-                data-param-autoplay="true"
-              ></a>
+              <a href={previewUrl} data-param-autoplay="true"></a>
             </amp-story-player>
           )}
         </div>
