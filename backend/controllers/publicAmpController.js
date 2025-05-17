@@ -26,7 +26,7 @@ exports.getAmpStoryPublicTest2 = async (req, res) => {
     const data = await fetchMcpData1(keyword);
      const protocol = req.protocol; // 'http' or 'https'
     const host = req.get('host');  // e.g. 'localhost:5000'
-    const canonicalUrl = `${protocol}://${host}/stories/test1/${encodeURIComponent(keyword)}`;
+    const canonicalUrl = `${protocol}://${host}/stories/test2/${encodeURIComponent(keyword)}`;
 
     // Add to data
     data.canonical_url = canonicalUrl;
