@@ -20,7 +20,20 @@ app.use('/api/restaurant/generateStory',restaurant_GenerateStoriesRoute);
 app.use('/api/fetchCategories',category);
 app.use('/stories', ampPublicRoute);
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  const sourceOrigin = req.query.__amp_source_origin;
+
+  if (sourceOrigin) {
+    res.setHeader('AMP-Access-Control-Allow-Source-Origin', sourceOrigin);
+    res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
+  }
+
+  next();
+});
 // updated if not work then remove this .
 // app.use('/stories', express.static(path.join(__dirname, 'stories')));
 
