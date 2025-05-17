@@ -27,6 +27,18 @@ exports.renderAmpStoryForTestTwo = (data) => {
   const template = fs.readFileSync(templatePath, 'utf8');
   return mustache.render(template, data);
 };
+exports.renderAmpStoryForTestOne1 = (data) => {
+  // const templatePath = path.join(__dirname, '../views/1.mustache');
+  const templatePath = path.join(__dirname, '../views/jarsNMore2.mustache');
+  const template = fs.readFileSync(templatePath, 'utf8');
+  return mustache.render(template, data);
+};
+exports.renderAmpStoryForTestTwo2 = (data) => {
+  // const templatePath = path.join(__dirname, '../views/1.mustache');
+  const templatePath = path.join(__dirname, '../views/test2.mustache');
+  const template = fs.readFileSync(templatePath, 'utf8');
+  return mustache.render(template, data);
+};
 
 // [
   // "https://b.zmtcdn.com/data/pictures/chains/5/20920615/5c13ba4541b16f7c71a83f78700ecb3c.jpg?output-format=webp",

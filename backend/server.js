@@ -8,6 +8,7 @@ const storiesRoutes=require('./routes/stories.js')
 const generateStoriesRoute=require('./routes/generateStory.js')
 const restaurant_GenerateStoriesRoute=require('./routes/restaurant_generateStory.js')
 const category= require('./routes/category.js');
+const ampPublicRoute = require('./routes/ampPublicRoute.js');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -17,10 +18,11 @@ app.use('/api/stories', storiesRoutes);
 app.use('/api/generateStory',generateStoriesRoute);
 app.use('/api/restaurant/generateStory',restaurant_GenerateStoriesRoute);
 app.use('/api/fetchCategories',category);
+app.use('/stories', ampPublicRoute);
 
 
 // updated if not work then remove this .
-app.use('/stories', express.static(path.join(__dirname, 'stories')));
+// app.use('/stories', express.static(path.join(__dirname, 'stories')));
 
 app.get('/', (req, res) => {
   res.send("Running")

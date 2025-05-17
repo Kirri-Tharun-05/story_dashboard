@@ -9,6 +9,7 @@ import Test1 from './components/Test1.jsx';
 import Test2 from './components/Test2.jsx';
 import UrlBasedStories from './components/UrlBasedStories.jsx'
 import UrlBasedAnimation from './components/UrlBasedAnimation.jsx'
+import StoryPlayer from './components/ampStoryPlayer.jsx'
 
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
@@ -31,6 +32,8 @@ function App() {
           <Route path='/test2' element={< Test2/>} />
            {/* <Route path="/restaurant/:category?" element={<UrlBasedStories />} /> */}
            <Route path="/restaurant/:category?" element={<UrlBasedAnimation />} />
+           <Route path="/ampStoryPlayer/restaurant/:category?" element={<StoryPlayer />} />
+
         </Routes>
       </BrowserRouter>
     </>
