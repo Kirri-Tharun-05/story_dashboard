@@ -123,7 +123,7 @@
 
 // export default Restaurant;
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../chat3.css';
@@ -132,25 +132,26 @@ import '../UrlAnimation.css';
 const Restaurant = () => {
   const { category } = useParams();
   const navigate = useNavigate();
+  const playerRef = useRef(null);
 
   const [categories, setCategories] = useState([]);
   const [previewUrl, setPreviewUrl] = useState('');
   const [error, setError] = useState('');
   const [tempCount, setTempCount] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
-  const [showPlayer, setShowPlayer] = useState(true);
 
-  // Load AMP player script only once
+  // Load AMP player script once
   useEffect(() => {
     if (!window.customElements.get('amp-story-player')) {
       const script = document.createElement('script');
       script.src = 'https://cdn.ampproject.org/amp-story-player-v0.js';
       script.async = true;
+      script.onload = () => console.log('AMP script loaded');
       document.body.appendChild(script);
     }
   }, []);
 
-  // Fetch all categories
+  // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -166,25 +167,34 @@ const Restaurant = () => {
     fetchCategories();
   }, []);
 
-  // Generate AMP Story URL on category change
+  // Update preview URL on category change
   useEffect(() => {
     if (category) {
-      generatePreviewUrl(category);
+      const baseUrl = 'https://story-dashboard-backend.onrender.com/stories';
+      const endpoint = tempCount % 2 === 1 ? 'test1' : 'test2';
+      const url = `${baseUrl}/${endpoint}/${encodeURIComponent(category)}?v=${Date.now()}`;
+      setPreviewUrl(url);
     }
-  }, [category]);
+  }, [category, tempCount]);
 
-  const generatePreviewUrl = (kw) => {
-    const baseUrl = 'https://story-dashboard-backend.onrender.com/stories';
-    const endpoint = tempCount % 2 === 1 ? 'test1' : 'test2';
-    const fullUrl = `${baseUrl}/${endpoint}/${encodeURIComponent(kw)}`;
+  // Force AMP story player to reload stories when URL changes
+  useEffect(() => {
+    if (playerRef.current && previewUrl) {
+      const player = playerRef.current;
 
-    // Trigger remount
-    setShowPlayer(false);
-    setTimeout(() => {
-      setPreviewUrl(fullUrl);
-      setShowPlayer(true);
-    }, 50);
-  };
+      // Clear old children
+      while (player.firstChild) {
+        player.removeChild(player.firstChild);
+      }
+
+      // Create a new <a> element
+      const storyLink = document.createElement('a');
+      storyLink.href = previewUrl;
+      storyLink.setAttribute('data-param-autoplay', 'true');
+
+      player.appendChild(storyLink);
+    }
+  }, [previewUrl]);
 
   const handleDirectionChange = (dir) => {
     if (categories.length === 0) return;
@@ -201,7 +211,7 @@ const Restaurant = () => {
           ? (currentIndex + 1) % categories.length
           : (currentIndex - 1 + categories.length) % categories.length;
 
-      setAnimationClass(''); // Reset animation
+      setAnimationClass('');
       navigate(`/ampStoryPlayer/restaurant/${categories[newIndex]}`);
     }, 400);
   };
@@ -220,18 +230,15 @@ const Restaurant = () => {
         </button>
 
         <div className={`preview-wrapper show ${animationClass}`}>
-          {showPlayer && previewUrl && (
-            <amp-story-player
-              style={{
-                width: '360px',
-                height: '600px',
-                borderRadius: '16px',
-                overflow: 'hidden'
-              }}
-            >
-              <a href={previewUrl} data-param-autoplay="true"></a>
-            </amp-story-player>
-          )}
+          <amp-story-player
+            ref={playerRef}
+            style={{
+              width: '360px',
+              height: '600px',
+              borderRadius: '16px',
+              overflow: 'hidden'
+            }}
+          />
         </div>
 
         <button className="right" onClick={handleNext}>
